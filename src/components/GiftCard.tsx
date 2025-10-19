@@ -5,6 +5,8 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { toast } from '@/hooks/use-toast';
 import { ConfettiEffect } from './ConfettiEffect';
 import { FloatingStickers } from './FloatingStickers';
+import { FloatingBalloons } from './FloatingBalloons';
+import { AudioPlayer } from './AudioPlayer';
 
 const photoSlots = [
   { id: 1, placeholder: 'Memory 1' },
@@ -73,11 +75,22 @@ export const GiftCard = () => {
   };
 
   const handleCoverClick = () => {
-    // Play sound effect
-    if (audioRef.current) {
-      audioRef.current.play();
-    }
+    // Play birthday chime sound
+    const chime = new Audio('https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3');
+    chime.volume = 0.3;
+    chime.play().catch(() => {
+      // Autoplay blocked
+    });
+    
     setShowConfetti(true);
+    
+    // Confetti pop sound
+    setTimeout(() => {
+      const pop = new Audio('https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3');
+      pop.volume = 0.2;
+      pop.play().catch(() => {});
+    }, 300);
+    
     flipToNext();
   };
 
@@ -144,9 +157,11 @@ export const GiftCard = () => {
   }, [currentPage]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 relative">
+    <div className="min-h-screen flex items-center justify-center p-4 relative bg-gradient-to-br from-background via-card to-muted/30">
       <FloatingStickers />
+      <FloatingBalloons />
       {showConfetti && <ConfettiEffect trigger={showConfetti} />}
+      <AudioPlayer />
       
       {/* Hidden audio element for sound effect */}
       <audio ref={audioRef} src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYHG2a67OiaUQwOVqnl8LJeGAU7kdjyy3ksBy15yPDekEIJFF607eutWBQKSKHh8rpqHgUrgs3y2og2BhtmuvDpmlEMDVao5fCxXRgGPJHY8sp5LQUBN3vI8N2QQQkTbrbv7K1aFApIouHyumweBSyBzvLajDYHGmW77OmaUQwMV6nl8LFeGAY+ktjyx3lsBy16yPDekEIJEm627+ysWhQJSKHh8rprHgUrg87y2ogzBhtlvOzpmlEMDFap5fKyXRcGPpLZ88d5KwYseLvv3pBBCRJtt+/trVoUCkei4fK7bB4FK4PO8tuJMQYbZL3s6ZtRCw1Wq+TysmAdBzyT2fPIeisGLHm78N2RQQkSbrfv7a1aFApGouHyu2wdBSuEzvLbiDEGHGO77OmcUQ0OVqvm8rJgHgY9k9nzyHosBy16uvDdkUEJEm237+ysWhQJR6Lh8rttHgUrg87y24kxBh1ivO3pm1ENDlSs5fKzYB0GPZPZ88h6KwYteLrw3ZFBCRJuvO/srVsUCUej4fK7bR4FK4TO8tuJMQUcYbzu6p1RDQ5Eq+XytGAbBj+U2fPIeSwGLXe68N+RQAoSb73w7K1aFAlHo+LyvWwdBSuEzvPcizIFHGC877qeUQ0PU63k8LRfGwY/ldrzyXorBi12u/DflkALEnC98OytWhQJR6Pi8rxsHQYrhM7z24kxBRtfvO66n1ENDlOt5fC1YBoGQJXa88l6KgUsdbrx4JdADBBwvfDtrVkUB0ak4fO9bR0FK4TO89yKMgUbXr3t651PDw5TruXwtWAbBkGV2vLKeioGLHS78eCXQQsQcL7w7K1ZFOVUB0ak4vO9bh0FK4XO89uLMgUaXL3t651PDQ5QruXwtl8aBkCW2vLKeSkGLHO88eGYQQsQcr7w7K1ZFAVHpOLzvmwdBSuFzvTbiTIFF1298OueUQ0OU67k8LVfGgZAltryynoqBityu/PhmUILEHK+8O2uWhQFR6Ti8751HQYshM7z24kzBRddvO/qnlENDlCu5fC1YBsGQZba8sp6KgYrcbvz4plBCxByu/DtrlsUBUek4vK+dR0HLIXOs9uJNAUWXLvw6p5RDQ9RruXwtmAbBkGX2vLJeisGKnC68+OZQAsSc7vw7a9bFAVHpeLyvnYdByyGzvPchzQEFly77OmfUA0PUa/l8LZgHAZCmNvyyXkrBipwuvPjmUALE3O78e+vXBQER6Xj8r52HgcshsrzzwlEHC88eOaQAsTdL3y7q9cFAREp+Lzv3UeByyHzfPbiDMEFVu67OiRUAsPUbDl8bRgHAVCl9ryyXosB2pwuvPimkALE3O78O+vXBQER6Xj8r52Hgcshs3z24gyBRJcuu3pnVANDlKw5fG2YBwFQpfb88p6LAdqb7rz4ZpACxNzv/DwrmwUBUWm4/O/dx8GLIbN89uJMQQRW7ru6p5RDRA9AAAAVAAAAAEAAAABAAAAAgAAAAIAAAADAAAAAwAAAAMAAAADAAAAAwAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAQEAAAABAAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" />
@@ -206,7 +221,7 @@ export const GiftCard = () => {
               onClick={currentPage === 0 ? handleCoverClick : undefined}
               style={{ cursor: currentPage === 0 ? 'pointer' : 'default', pointerEvents: currentPage === 0 ? 'auto' : 'none' }}
             >
-              <div className="h-full flex flex-col items-center justify-center p-8 md:p-16 bg-white rounded-3xl soft-glow border-2 border-primary/10 relative overflow-hidden group transition-transform duration-200 active:scale-95">
+              <div className="h-full flex flex-col items-center justify-center p-8 md:p-16 bg-gradient-to-br from-white via-primary/5 to-secondary/10 rounded-3xl soft-glow border-2 border-primary/20 relative overflow-hidden group transition-all duration-500 hover:shadow-2xl hover:border-primary/30 active:scale-95">
                 {/* Decorative corners with anime stickers */}
                 <div className="absolute top-6 left-6 text-3xl animate-bounce-slow">⚡</div>
                 <div className="absolute top-6 right-6 text-3xl animate-bounce-slow" style={{ animationDelay: '0.5s' }}>🌸</div>
@@ -262,7 +277,7 @@ export const GiftCard = () => {
               }`}
               style={{ pointerEvents: currentPage === 1 ? 'auto' : 'none' }}
             >
-              <div className="h-full p-8 md:p-12 bg-white rounded-3xl soft-glow border-2 border-primary/10 flex flex-col items-center justify-center relative overflow-hidden">
+              <div className="h-full p-8 md:p-12 bg-gradient-to-br from-white via-secondary/5 to-accent/10 rounded-3xl soft-glow border-2 border-primary/10 flex flex-col items-center justify-center relative overflow-hidden animate-slide-in-right">
                 {/* Decorative elements */}
                 <div className="absolute top-8 left-8 text-4xl opacity-20 rotate-12">⚡</div>
                 <div className="absolute top-8 right-8 text-4xl opacity-20 -rotate-12">🔮</div>
@@ -289,13 +304,12 @@ export const GiftCard = () => {
                             </div>
                           )}
                           
-                          {/* Video - automatically plays when page opens */}
+                          {/* Video with magical overlay */}
                           <video 
                             ref={videoRef}
-                            src="/birthday-video.mov"
+                            src="/birthday-video.mp4"
                             controls
                             className="absolute inset-0 w-full h-full object-contain"
-                            autoPlay
                             playsInline
                             controlsList="nodownload"
                             onLoadedData={() => setVideoLoading(false)}
@@ -308,6 +322,21 @@ export const GiftCard = () => {
                               });
                             }}
                           />
+                          
+                          {/* Play overlay - shows before video plays */}
+                          {!videoLoading && videoRef.current?.paused && (
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm cursor-pointer group"
+                                 onClick={() => videoRef.current?.play()}>
+                              <div className="text-center space-y-3 transform group-hover:scale-110 transition-transform duration-300">
+                                <div className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center mx-auto shadow-2xl">
+                                  <div className="w-0 h-0 border-l-[20px] border-l-primary border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
+                                </div>
+                                <p className="text-white text-lg font-dancing font-semibold drop-shadow-lg">
+                                  Play with Sound 🔊
+                                </p>
+                              </div>
+                            </div>
+                          )}
                           
                           {/* Decorative corner stickers */}
                           <div className="absolute top-3 left-3 text-2xl animate-bounce-slow pointer-events-none">🌸</div>
@@ -339,7 +368,7 @@ export const GiftCard = () => {
               }`}
               style={{ pointerEvents: currentPage === 2 ? 'auto' : 'none' }}
             >
-              <div className="h-full p-8 md:p-16 bg-white rounded-3xl soft-glow border-2 border-primary/10 flex flex-col items-center justify-center relative overflow-hidden">
+              <div className="h-full p-8 md:p-16 bg-gradient-to-br from-white via-accent/5 to-primary/10 rounded-3xl soft-glow border-2 border-primary/10 flex flex-col items-center justify-center relative overflow-hidden animate-slide-in-right">
                 {/* Scattered decorative stickers */}
                 <div className="absolute top-12 left-12 text-3xl opacity-20 rotate-12">⚡</div>
                 <div className="absolute top-16 right-16 text-3xl opacity-20 -rotate-12">🌸</div>
