@@ -249,7 +249,7 @@ export const GiftCard = () => {
               </div>
             </div>
 
-            {/* Page 1: Anime Quote */}
+            {/* Page 1: Video Page */}
             <div
               className={`card-page absolute inset-0 transition-all duration-700 ease-out ${
                 currentPage === 1 
@@ -260,23 +260,15 @@ export const GiftCard = () => {
               }`}
               style={{ pointerEvents: currentPage === 1 ? 'auto' : 'none' }}
             >
-              <div className="h-full p-8 md:p-12 bg-gradient-to-br from-white via-secondary/5 to-accent/10 rounded-3xl soft-glow border-2 border-primary/10 flex flex-col items-center justify-center relative overflow-hidden animate-slide-in-right">
-                {/* Decorative elements */}
-                <div className="absolute top-8 left-8 text-4xl opacity-20 rotate-12">⚡</div>
-                <div className="absolute top-8 right-8 text-4xl opacity-20 -rotate-12">🔮</div>
-                <div className="absolute bottom-8 left-8 text-4xl opacity-20">🌸</div>
-                <div className="absolute bottom-8 right-8 text-4xl opacity-20">🦋</div>
+              <div className="h-full p-4 md:p-6 bg-gradient-to-br from-white via-secondary/5 to-accent/10 rounded-3xl soft-glow border-2 border-primary/10 flex flex-col items-center justify-center relative overflow-hidden">
                 
-                <div className="w-full max-w-4xl relative z-10">
-                  {/* Video display area */}
-                  <div className="relative w-full mx-auto">
-                    <div className="relative group">
-                      {/* Animated border glow */}
-                      <div className="absolute -inset-1 bg-gradient-to-r from-primary via-secondary to-primary rounded-3xl opacity-75 blur-sm group-hover:opacity-100 transition duration-1000 animate-pulse"></div>
-                      
-                      {/* Video container */}
-                      <div className="relative bg-white p-2 rounded-3xl">
-                        <div className="relative aspect-video rounded-2xl overflow-hidden bg-black border-2 border-primary/20">
+                <div className="w-full h-full flex items-center justify-center relative z-10">
+                  {/* Video display area - maximized */}
+                  <div className="relative w-full h-full flex items-center justify-center">
+                    <div className="relative w-full h-full max-h-[85vh]">
+                      {/* Video container - full width */}
+                      <div className="relative w-full h-full">
+                        <div className="relative w-full h-full rounded-2xl overflow-hidden bg-black border-2 border-primary/20 shadow-2xl">
                           {/* Loading skeleton */}
                           {videoLoading && (
                             <div className="absolute inset-0 flex items-center justify-center bg-black/90 z-10">
@@ -287,16 +279,18 @@ export const GiftCard = () => {
                             </div>
                           )}
                           
-                          {/* Video with magical overlay */}
+                          {/* Video element */}
                           <video 
                             ref={videoRef}
                             src="/birthday-video-2.mp4"
                             controls
-                            className="absolute inset-0 w-full h-full object-contain"
+                            className="w-full h-full object-contain"
                             playsInline
                             controlsList="nodownload"
+                            preload="metadata"
                             onLoadedData={() => setVideoLoading(false)}
-                            onError={() => {
+                            onError={(e) => {
+                              console.error('Video error:', e);
                               setVideoLoading(false);
                               toast({
                                 title: "Video unavailable",
@@ -305,35 +299,8 @@ export const GiftCard = () => {
                               });
                             }}
                           />
-                          
-                          {/* Play overlay - shows before video plays */}
-                          {!videoLoading && videoRef.current?.paused && (
-                            <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm cursor-pointer group"
-                                 onClick={() => videoRef.current?.play()}>
-                              <div className="text-center space-y-3 transform group-hover:scale-110 transition-transform duration-300">
-                                <div className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center mx-auto shadow-2xl">
-                                  <div className="w-0 h-0 border-l-[20px] border-l-primary border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
-                                </div>
-                                <p className="text-white text-lg font-dancing font-semibold drop-shadow-lg">
-                                  Play with Sound 🔊
-                                </p>
-                              </div>
-                            </div>
-                          )}
-                          
-                          {/* Decorative corner stickers */}
-                          <div className="absolute top-3 left-3 text-2xl animate-bounce-slow pointer-events-none">🌸</div>
-                          <div className="absolute top-3 right-3 text-2xl animate-bounce-slow pointer-events-none" style={{ animationDelay: '0.5s' }}>⚡</div>
-                          <div className="absolute bottom-3 left-3 text-2xl animate-bounce-slow pointer-events-none" style={{ animationDelay: '1s' }}>🦋</div>
-                          <div className="absolute bottom-3 right-3 text-2xl animate-bounce-slow pointer-events-none" style={{ animationDelay: '1.5s' }}>💫</div>
                         </div>
                       </div>
-                      
-                      {/* Floating hearts around video */}
-                      <Heart className="absolute -top-4 -left-4 w-6 h-6 text-primary fill-primary animate-bounce-slow" />
-                      <Heart className="absolute -top-4 -right-4 w-6 h-6 text-secondary fill-secondary animate-bounce-slow" style={{ animationDelay: '0.7s' }} />
-                      <Heart className="absolute -bottom-4 -left-4 w-6 h-6 text-accent fill-accent animate-bounce-slow" style={{ animationDelay: '1.4s' }} />
-                      <Heart className="absolute -bottom-4 -right-4 w-6 h-6 text-primary fill-primary animate-bounce-slow" style={{ animationDelay: '2.1s' }} />
                     </div>
                   </div>
                 </div>
