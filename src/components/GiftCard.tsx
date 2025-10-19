@@ -75,22 +75,7 @@ export const GiftCard = () => {
   };
 
   const handleCoverClick = () => {
-    // Play birthday chime sound
-    const chime = new Audio('https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3');
-    chime.volume = 0.3;
-    chime.play().catch(() => {
-      // Autoplay blocked
-    });
-    
     setShowConfetti(true);
-    
-    // Confetti pop sound
-    setTimeout(() => {
-      const pop = new Audio('https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3');
-      pop.volume = 0.2;
-      pop.play().catch(() => {});
-    }, 300);
-    
     flipToNext();
   };
 
@@ -307,7 +292,7 @@ export const GiftCard = () => {
                           {/* Video with magical overlay */}
                           <video 
                             ref={videoRef}
-                            src="/birthday-video.mp4"
+                            src="/birthday-video-2.mp4"
                             controls
                             className="absolute inset-0 w-full h-full object-contain"
                             playsInline
