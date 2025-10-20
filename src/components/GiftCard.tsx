@@ -269,30 +269,16 @@ export const GiftCard = () => {
                       {/* Video container - full width */}
                       <div className="relative w-full h-full">
                         <div className="relative w-full h-full rounded-2xl overflow-hidden bg-black border-2 border-primary/20 shadow-2xl">
-                          {/* Loading skeleton */}
-                          {videoLoading && (
-                            <div className="absolute inset-0 flex items-center justify-center bg-black/90 z-10">
-                              <div className="text-center space-y-4">
-                                <Skeleton className="w-16 h-16 rounded-full mx-auto" />
-                                <p className="text-white text-sm animate-pulse">Loading your special video... ✨</p>
-                              </div>
-                            </div>
-                          )}
-                          
                           {/* Video element */}
                           <video 
                             ref={videoRef}
                             src="/birthday-video.mp4"
                             controls
-                            autoPlay
-                            loop
                             playsInline
                             preload="auto"
                             className="w-full h-full rounded-2xl object-cover shadow-lg"
-                            onLoadedData={() => setVideoLoading(false)}
                             onError={(e) => {
                               console.error('Video error:', e);
-                              setVideoLoading(false);
                               toast({
                                 title: "Video unavailable",
                                 description: "The birthday video couldn't be loaded.",
