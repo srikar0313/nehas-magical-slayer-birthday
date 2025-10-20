@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { SortingHat } from './SortingHat';
 import { ConfettiEffect } from './ConfettiEffect';
 
 export const BirthdayHero = () => {
@@ -30,11 +29,8 @@ export const BirthdayHero = () => {
         <div className="absolute inset-0 bg-background/60 backdrop-blur-sm" />
       </div>
       
-      {/* Sorting Hat */}
-      <SortingHat />
-      
       {/* Main Birthday Message */}
-      <div className="text-center space-y-6 max-w-4xl">
+      <div className="text-center space-y-6 max-w-4xl relative z-10">
         <h1 
           className="text-6xl md:text-8xl lg:text-9xl text-magical font-bold leading-tight breathing-water"
           onClick={triggerCelebration}
