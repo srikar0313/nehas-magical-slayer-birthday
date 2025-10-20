@@ -282,12 +282,13 @@ export const GiftCard = () => {
                           {/* Video element */}
                           <video 
                             ref={videoRef}
-                            src="/birthday-video-2.mp4"
+                            src="/birthday-video.mp4"
                             controls
-                            className="w-full h-full object-contain"
+                            autoPlay
+                            loop
                             playsInline
-                            controlsList="nodownload"
-                            preload="metadata"
+                            preload="auto"
+                            className="w-full h-full rounded-2xl object-cover shadow-lg"
                             onLoadedData={() => setVideoLoading(false)}
                             onError={(e) => {
                               console.error('Video error:', e);
