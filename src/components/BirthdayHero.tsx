@@ -15,7 +15,7 @@ export const BirthdayHero = () => {
       <ConfettiEffect trigger={showConfetti} />
       
       {/* Hero Video Background */}
-      <div className="absolute inset-0 overflow-hidden opacity-0 animate-fade-in">
+      <div className="absolute inset-0 overflow-hidden">
         <video
           src="/birthday-video.mp4"
           autoPlay
@@ -24,8 +24,8 @@ export const BirthdayHero = () => {
           playsInline
           preload="auto"
           className="w-full h-full object-cover"
-          poster="/placeholder.svg"
           onCanPlayThrough={(e) => e.currentTarget.play()}
+          onError={(e) => console.error("Video failed to load:", e)}
         />
         <div className="absolute inset-0 bg-background/60 backdrop-blur-sm" />
       </div>
