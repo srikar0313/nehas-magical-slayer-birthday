@@ -14,6 +14,22 @@ export const BirthdayHero = () => {
     <section className="min-h-screen flex flex-col items-center justify-center relative px-4 cursor-water">
       <ConfettiEffect trigger={showConfetti} />
       
+      {/* Hero Video Background */}
+      <div className="absolute inset-0 overflow-hidden opacity-0 animate-fade-in">
+        <video
+          src="/birthday-video.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="w-full h-full object-cover"
+          poster="/placeholder.svg"
+          onCanPlayThrough={(e) => e.currentTarget.play()}
+        />
+        <div className="absolute inset-0 bg-background/60 backdrop-blur-sm" />
+      </div>
+      
       {/* Sorting Hat */}
       <SortingHat />
       
