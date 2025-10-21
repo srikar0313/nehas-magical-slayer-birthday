@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Upload, Heart, Sparkles, Music, Star, Share2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Upload, Heart, Sparkles, Music, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { toast } from '@/hooks/use-toast';
@@ -107,31 +107,6 @@ export const GiftCard = () => {
     setTouchEnd(0);
   };
 
-  // Share functionality
-  const handleShare = async () => {
-    try {
-      if (navigator.share) {
-        await navigator.share({
-          title: 'Happy Birthday Neha! 🎉',
-          text: 'Wishing you a magical 22nd birthday! ✨',
-          url: window.location.href,
-        });
-        toast({
-          title: "Shared successfully! 🎊",
-          description: "Thanks for spreading the birthday magic!",
-        });
-      } else {
-        // Fallback: copy to clipboard
-        await navigator.clipboard.writeText(window.location.href);
-        toast({
-          title: "Link copied! 📋",
-          description: "Share this magical birthday card with others!",
-        });
-      }
-    } catch (error) {
-      console.log('Share cancelled');
-    }
-  };
 
   // Reset video loading state when page changes
   useEffect(() => {
@@ -149,16 +124,6 @@ export const GiftCard = () => {
       {/* Hidden audio element for sound effect */}
       <audio ref={audioRef} src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYHG2a67OiaUQwOVqnl8LJeGAU7kdjyy3ksBy15yPDekEIJFF607eutWBQKSKHh8rpqHgUrgs3y2og2BhtmuvDpmlEMDVao5fCxXRgGPJHY8sp5LQUBN3vI8N2QQQkTbrbv7K1aFApIouHyumweBSyBzvLajDYHGmW77OmaUQwMV6nl8LFeGAY+ktjyx3lsBy16yPDekEIJEm627+ysWhQJSKHh8rprHgUrg87y2ogzBhtlvOzpmlEMDFap5fKyXRcGPpLZ88d5KwYseLvv3pBBCRJtt+/trVoUCkei4fK7bB4FK4PO8tuJMQYbZL3s6ZtRCw1Wq+TysmAdBzyT2fPIeisGLHm78N2RQQkSbrfv7a1aFApGouHyu2wdBSuEzvLbiDEGHGO77OmcUQ0OVqvm8rJgHgY9k9nzyHosBy16uvDdkUEJEm237+ysWhQJR6Lh8rttHgUrg87y24kxBh1ivO3pm1ENDlSs5fKzYB0GPZPZ88h6KwYteLrw3ZFBCRJuvO/srVsUCUej4fK7bR4FK4TO8tuJMQUcYbzu6p1RDQ5Eq+XytGAbBj+U2fPIeSwGLXe68N+RQAoSb73w7K1aFAlHo+LyvWwdBSuEzvPcizIFHGC877qeUQ0PU63k8LRfGwY/ldrzyXorBi12u/DflkALEnC98OytWhQJR6Pi8rxsHQYrhM7z24kxBRtfvO66n1ENDlOt5fC1YBoGQJXa88l6KgUsdbrx4JdADBBwvfDtrVkUB0ak4fO9bR0FK4TO89yKMgUbXr3t651PDw5TruXwtWAbBkGV2vLKeioGLHS78eCXQQsQcL7w7K1ZFOVUB0ak4vO9bh0FK4XO89uLMgUaXL3t651PDQ5QruXwtl8aBkCW2vLKeSkGLHO88eGYQQsQcr7w7K1ZFAVHpOLzvmwdBSuFzvTbiTIFF1298OueUQ0OU67k8LVfGgZAltryynoqBityu/PhmUILEHK+8O2uWhQFR6Ti8751HQYshM7z24kzBRddvO/qnlENDlCu5fC1YBsGQZba8sp6KgYrcbvz4plBCxByu/DtrlsUBUek4vK+dR0HLIXOs9uJNAUWXLvw6p5RDQ9RruXwtmAbBkGX2vLJeisGKnC68+OZQAsSc7vw7a9bFAVHpeLyvnYdByyGzvPchzQEFly77OmfUA0PUa/l8LZgHAZCmNvyyXkrBipwuvPjmUALE3O78e+vXBQER6Xj8r52HgcshsrzzwlEHC88eOaQAsTdL3y7q9cFAREp+Lzv3UeByyHzfPbiDMEFVu67OiRUAsPUbDl8bRgHAVCl9ryyXosB2pwuvPimkALE3O78O+vXBQER6Xj8r52Hgcshs3z24gyBRJcuu3pnVANDlKw5fG2YBwFQpfb88p6LAdqb7rz4ZpACxNzv/DwrmwUBUWm4/O/dx8GLIbN89uJMQQRW7ru6p5RDRA9AAAAVAAAAAEAAAABAAAAAgAAAAIAAAADAAAAAwAAAAMAAAADAAAAAwAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAQEAAAABAAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" />
       
-      {/* Share Button - Fixed position */}
-      {currentPage > 0 && (
-        <Button
-          onClick={handleShare}
-          className="fixed top-4 right-4 z-50 btn-elegant shadow-lg"
-          size="icon"
-        >
-          <Share2 className="w-5 h-5" />
-        </Button>
-      )}
       
       <div className="relative w-full max-w-4xl aspect-[4/3] z-10">
         {/* Navigation Buttons - Hidden on first page */}
@@ -198,8 +163,8 @@ export const GiftCard = () => {
                 currentPage === 0 
                   ? 'opacity-100 scale-100 z-10' 
                   : currentPage > 0
-                  ? 'opacity-0 scale-90 -translate-x-full z-0'
-                  : 'opacity-0 scale-90 translate-x-full z-0'
+                  ? 'scale-90 -translate-x-full z-0'
+                  : 'scale-90 translate-x-full z-0'
               }`}
               onClick={currentPage === 0 ? handleCoverClick : undefined}
               style={{ cursor: currentPage === 0 ? 'pointer' : 'default', pointerEvents: currentPage === 0 ? 'auto' : 'none' }}
@@ -255,8 +220,8 @@ export const GiftCard = () => {
                 currentPage === 1 
                   ? 'opacity-100 scale-100 z-10' 
                   : currentPage > 1
-                  ? 'opacity-0 scale-90 -translate-x-full z-0'
-                  : 'opacity-0 scale-90 translate-x-full z-0'
+                  ? 'scale-90 -translate-x-full z-0'
+                  : 'scale-90 translate-x-full z-0'
               }`}
               style={{ pointerEvents: currentPage === 1 ? 'auto' : 'none' }}
             >
@@ -300,8 +265,8 @@ export const GiftCard = () => {
                 currentPage === 2 
                   ? 'opacity-100 scale-100 z-10' 
                   : currentPage > 2
-                  ? 'opacity-0 scale-90 -translate-x-full z-0'
-                  : 'opacity-0 scale-90 translate-x-full z-0'
+                  ? 'scale-90 -translate-x-full z-0'
+                  : 'scale-90 translate-x-full z-0'
               }`}
               style={{ pointerEvents: currentPage === 2 ? 'auto' : 'none' }}
             >
