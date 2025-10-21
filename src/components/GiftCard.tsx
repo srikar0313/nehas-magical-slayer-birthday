@@ -301,7 +301,7 @@ export const GiftCard = () => {
                   
                   <h2 className="text-4xl md:text-6xl text-elegant font-playfair flex items-center justify-center gap-3">
                     <span className="text-3xl">✨</span>
-                    Wishing You Magic
+                    Happy Birthday Doctor🩺
                     <span className="text-3xl">✨</span>
                   </h2>
                   
@@ -315,15 +315,8 @@ export const GiftCard = () => {
                     <div className="absolute -top-4 -left-4 text-3xl">🎀</div>
                     <div className="absolute -top-4 -right-4 text-3xl">🌺</div>
                     
-                    <p className="text-base md:text-lg text-foreground/80 leading-relaxed font-montserrat mb-4">
-                      May your 22nd year be filled with endless joy, beautiful surprises, 
-                      and all the love your heart can hold. Just like your favorite anime characters, 
-                      may you have the courage to chase your dreams and the magic to make them come true! ✨
-                    </p>
-                    
                     <p className="text-base md:text-lg text-foreground/80 leading-relaxed font-montserrat">
-                      Here's to new adventures, cherished moments, and memories that shine 
-                      brighter than any spell or power! 🌟
+                      Neha so vinu first happy birthday once more, u r the bestest of best people I have ever known ra. I am really proud and happy to have a frnd like you. Enjoy chey ni day and also ni life niiii and appudapudu koncham matladu ra don't forget 👊🏻. Byee💃
                     </p>
                     
                     <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-3xl">💝</div>
@@ -336,11 +329,6 @@ export const GiftCard = () => {
                   </p>
                   
                   <div className="pt-6 flex flex-col items-center gap-2">
-                    <p className="text-sm text-muted-foreground font-montserrat flex items-center gap-2">
-                      Made with
-                      <Heart className="w-4 h-4 text-primary fill-primary inline animate-pulse" />
-                      just for you
-                    </p>
                     <div className="flex gap-2 text-xl">
                       <span className="animate-bounce-slow">⚡</span>
                       <span className="animate-bounce-slow" style={{ animationDelay: '0.2s' }}>✨</span>
