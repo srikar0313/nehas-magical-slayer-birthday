@@ -225,7 +225,7 @@ export const GiftCard = () => {
               }`}
               style={{ pointerEvents: currentPage === 1 ? 'auto' : 'none' }}
             >
-              <div className="h-full p-4 md:p-6 bg-gradient-to-br from-white via-secondary/5 to-accent/10 rounded-3xl soft-glow border-2 border-primary/10 flex flex-col items-center justify-center relative overflow-hidden">
+              <div className="h-full p-4 md:p-6 bg-white rounded-3xl soft-glow border-2 border-primary/10 flex flex-col items-center justify-center relative overflow-hidden">
                 
                 <div className="w-full h-full flex items-center justify-center relative z-10">
                   {/* Video display area - maximized */}
@@ -270,7 +270,7 @@ export const GiftCard = () => {
               }`}
               style={{ pointerEvents: currentPage === 2 ? 'auto' : 'none' }}
             >
-              <div className="h-full p-8 md:p-16 bg-gradient-to-br from-white via-accent/5 to-primary/10 rounded-3xl soft-glow border-2 border-primary/10 flex flex-col items-center justify-center relative overflow-hidden animate-slide-in-right">
+              <div className="h-full p-8 md:p-16 bg-white rounded-3xl soft-glow border-2 border-primary/10 flex flex-col items-center justify-center relative overflow-hidden animate-slide-in-right">
                 {/* Scattered decorative stickers */}
                 <div className="absolute top-12 left-12 text-3xl opacity-20 rotate-12">⚡</div>
                 <div className="absolute top-16 right-16 text-3xl opacity-20 -rotate-12">🌸</div>
